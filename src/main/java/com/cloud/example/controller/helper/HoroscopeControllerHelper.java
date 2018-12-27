@@ -12,34 +12,40 @@ public class HoroscopeControllerHelper {
 	 * @param dateOfBirth
 	 * @return
 	 */
-	public static String getYourSign(int dateOfBirth){
+	public static String getYourSign(String dateOfBirth){
 		String returnValue = HoroscopeConstants.Cancer;
 		
-		if(dateOfBirth >= 1222 && dateOfBirth <= 119){
-			returnValue = HoroscopeConstants.Capricorn;
-		}	else if(dateOfBirth >= 120 && dateOfBirth <= 218){
-			returnValue = HoroscopeConstants.Aquarius;
-		}	else if(dateOfBirth >= 219 && dateOfBirth <= 320){
-			returnValue = HoroscopeConstants.Pisces;
-		}	else if(dateOfBirth >= 321 && dateOfBirth <= 419){
-			returnValue = HoroscopeConstants.Aries;
-		}	else if(dateOfBirth >= 420 && dateOfBirth <= 520){
-			returnValue = HoroscopeConstants.Taurus;
-		}	else if(dateOfBirth >= 521 && dateOfBirth < 620){
-			returnValue = HoroscopeConstants.Gemini;
-		}	else if(dateOfBirth >= 621 && dateOfBirth < 722){
-			returnValue = HoroscopeConstants.Cancer;
-		}	else if(dateOfBirth >= 723 && dateOfBirth < 822){
-			returnValue = HoroscopeConstants.Leo;
-		}	else if(dateOfBirth >= 823 && dateOfBirth < 922){
-			returnValue = HoroscopeConstants.Virgo;
-		}	else if(dateOfBirth >= 923 && dateOfBirth < 1022){
-			returnValue = HoroscopeConstants.Libra;
-		}	else if(dateOfBirth >= 1023 && dateOfBirth < 1121){
-			returnValue = HoroscopeConstants.Scorpio;
-		}	else{
-			returnValue = HoroscopeConstants.Sagittarius;
-		}
+		int month = Integer.parseInt(dateOfBirth.substring(2, dateOfBirth.length()));
+        int day = Integer.parseInt(dateOfBirth.substring(0, 2));
+        
+        System.out.println();
+
+        if      ((month == 12 && day >= 22 && day <= 31) || (month ==  1 && day >= 1 && day <= 19))
+        	returnValue = HoroscopeConstants.Capricorn;
+        else if ((month ==  1 && day >= 20 && day <= 31) || (month ==  2 && day >= 1 && day <= 17))
+        	returnValue = HoroscopeConstants.Aquarius;
+        else if ((month ==  2 && day >= 18 && day <= 29) || (month ==  3 && day >= 1 && day <= 19))
+        	returnValue = HoroscopeConstants.Pisces;
+        else if ((month ==  3 && day >= 20 && day <= 31) || (month ==  4 && day >= 1 && day <= 19))
+        	returnValue = HoroscopeConstants.Aries;
+        else if ((month ==  4 && day >= 20 && day <= 30) || (month ==  5 && day >= 1 && day <= 20))
+        	returnValue = HoroscopeConstants.Taurus;
+        else if ((month ==  5 && day >= 21 && day <= 31) || (month ==  6 && day >= 1 && day <= 20))
+        	returnValue = HoroscopeConstants.Gemini;
+        else if ((month ==  6 && day >= 21 && day <= 30) || (month ==  7 && day >= 1 && day <= 22))
+        	returnValue = HoroscopeConstants.Cancer;
+        else if ((month ==  7 && day >= 23 && day <= 31) || (month ==  8 && day >= 1 && day <= 22))
+        	returnValue = HoroscopeConstants.Leo;
+        else if ((month ==  8 && day >= 23 && day <= 31) || (month ==  9 && day >= 1 && day <= 22))
+        	returnValue = HoroscopeConstants.Virgo;
+        else if ((month ==  9 && day >= 23 && day <= 30) || (month == 10 && day >= 1 && day <= 22))
+        	returnValue = HoroscopeConstants.Libra;
+        else if ((month == 10 && day >= 23 && day <= 31) || (month == 11 && day >= 1 && day <= 21))
+        	returnValue = HoroscopeConstants.Scorpio;
+        else if ((month == 11 && day >= 22 && day <= 30) || (month == 12 && day >= 1 && day <= 21))
+        	returnValue = HoroscopeConstants.Sagittarius;
+        else
+        	returnValue = "Illegal date";
 		
 		
 		return returnValue;
@@ -94,6 +100,24 @@ public class HoroscopeControllerHelper {
 		
 		return returnValue;
 		
+	}
+	
+	
+	public static String getHtmlString(String sign, String signDescription){
+		String returnString = "";
+		StringBuilder sb = new StringBuilder();
+		sb.append("<html>");
+		sb.append("<table><tr><td colspan='3' align='center'>");
+		sb.append("<b> Your Zodiac Information:");
+		sb.append(sign);
+		sb.append("</b></td></tr>");
+		sb.append("<tr><td align='center'><p>");
+		sb.append(signDescription);
+		sb.append("</p></td></tr>");
+		sb.append("</table></html>");
+		returnString = sb.toString();
+		
+		return returnString;
 	}
 
 }

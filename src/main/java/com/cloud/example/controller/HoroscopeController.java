@@ -17,10 +17,11 @@ public class HoroscopeController {
 	
 	
 	@RequestMapping(value = "/dob")
-	public String getYourSign(@RequestParam("dob") int dateOfBirth, HttpServletRequest request){
+	public String getYourSign(@RequestParam("dob") String dateOfBirth, HttpServletRequest request){
 		logger.info("In getYourSign method...");
 		String yourSign = HoroscopeControllerHelper.getYourSign(dateOfBirth);
-		String returnMessage = HoroscopeControllerHelper.getSignDescription(yourSign);
+		String signDescription = HoroscopeControllerHelper.getSignDescription(yourSign);
+		String returnMessage = HoroscopeControllerHelper.getHtmlString(yourSign, signDescription);
 		return returnMessage;
 		
 	}
