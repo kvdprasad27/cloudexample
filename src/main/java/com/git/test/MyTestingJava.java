@@ -15,6 +15,11 @@ public class MyTestingJava {
 	public static void main(String[] args) {
 
 		System.out.println("GIT migration example MyTestingJavaMyTestingJava");
+		getName();
+	}
+
+	private static String getName(){
+		return "KVD is great";
 	}
 
 }
